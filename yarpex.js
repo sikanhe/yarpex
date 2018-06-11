@@ -50,7 +50,7 @@ module.exports =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.keywordlist = exports.struct = exports.nil = exports.time = exports.regex = exports.binary = exports.float = exports.charlist = exports.integer = exports.tuple = exports.list = exports.map = exports.atom = exports.unwrap = exports.wrapAs = exports.wrap = undefined;
+	exports.keywordlist = exports.struct = exports.nil = exports.time = exports.regex = exports.binary = exports.float = exports.charlist = exports.integer = exports.tuple = exports.list = exports.map = exports.bool = exports.atom = exports.unwrap = exports.wrapAs = exports.wrap = undefined;
 	
 	var _map = __webpack_require__(1);
 	
@@ -106,6 +106,7 @@ module.exports =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var atom = exports.atom = (0, _types.wrapAs)('atom');
+	var bool = exports.bool = (0, _types.wrapAs)('boolean');
 	var map = exports.map = (0, _types.wrapAs)('map');
 	var list = exports.list = (0, _types.wrapAs)('list');
 	var tuple = exports.tuple = (0, _types.wrapAs)('tuple');
@@ -1324,7 +1325,7 @@ module.exports =
 	  return (0, _type2.default)(x) === name;
 	});
 	
-	var typeNameFor = (0, _cond2.default)([[(0, _is2.default)(Buffer), (0, _always2.default)('binary')], [(0, _is2.default)(Uint8Array), (0, _always2.default)('binary')], [typeEq('String'), (0, _always2.default)('binary')], [typeEq('Array'), (0, _always2.default)('list')], [typeEq('Number'), (0, _always2.default)('integer')], [typeEq('Object'), (0, _always2.default)('map')], [typeEq('RegExp'), (0, _always2.default)('regex')], [typeEq('Date'), (0, _always2.default)('time')], [typeEq('Null'), (0, _always2.default)('nil')], [_T2.default, (0, _always2.default)(null)]]);
+	var typeNameFor = (0, _cond2.default)([[(0, _is2.default)(Buffer), (0, _always2.default)('binary')], [(0, _is2.default)(Uint8Array), (0, _always2.default)('binary')], [typeEq('String'), (0, _always2.default)('binary')], [typeEq('Array'), (0, _always2.default)('list')], [typeEq('Number'), (0, _always2.default)('integer')], [typeEq('Object'), (0, _always2.default)('map')], [typeEq('RegExp'), (0, _always2.default)('regex')], [typeEq('Date'), (0, _always2.default)('time')], [typeEq('Null'), (0, _always2.default)('nil')], [typeEq('Boolean'), (0, _always2.default)('boolean')], [_T2.default, (0, _always2.default)(null)]]);
 	
 	var wrapAs = exports.wrapAs = (0, _curry2.default)(function (name, valueOrTyped) {
 	  var value = valueOrTyped;
@@ -1661,50 +1662,54 @@ module.exports =
 	
 	var _map2 = _interopRequireDefault(_map);
 	
-	var _list = __webpack_require__(59);
+	var _boolean = __webpack_require__(59);
+	
+	var _boolean2 = _interopRequireDefault(_boolean);
+	
+	var _list = __webpack_require__(60);
 	
 	var _list2 = _interopRequireDefault(_list);
 	
-	var _tuple = __webpack_require__(60);
+	var _tuple = __webpack_require__(61);
 	
 	var _tuple2 = _interopRequireDefault(_tuple);
 	
-	var _atom = __webpack_require__(61);
+	var _atom = __webpack_require__(62);
 	
 	var _atom2 = _interopRequireDefault(_atom);
 	
-	var _integer = __webpack_require__(62);
+	var _integer = __webpack_require__(63);
 	
 	var _integer2 = _interopRequireDefault(_integer);
 	
-	var _float = __webpack_require__(63);
+	var _float = __webpack_require__(64);
 	
 	var _float2 = _interopRequireDefault(_float);
 	
-	var _binary = __webpack_require__(64);
+	var _binary = __webpack_require__(65);
 	
 	var _binary2 = _interopRequireDefault(_binary);
 	
-	var _regex = __webpack_require__(65);
+	var _regex = __webpack_require__(66);
 	
 	var _regex2 = _interopRequireDefault(_regex);
 	
-	var _charlist = __webpack_require__(66);
+	var _charlist = __webpack_require__(67);
 	
 	var _charlist2 = _interopRequireDefault(_charlist);
 	
-	var _time = __webpack_require__(67);
+	var _time = __webpack_require__(68);
 	
 	var _time2 = _interopRequireDefault(_time);
 	
-	var _nil = __webpack_require__(68);
+	var _nil = __webpack_require__(69);
 	
 	var _nil2 = _interopRequireDefault(_nil);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function init() {
-	  var types = [_map2.default, _list2.default, _tuple2.default, _atom2.default, _integer2.default, _float2.default, _binary2.default, _charlist2.default, _regex2.default, _time2.default, _nil2.default];
+	  var types = [_map2.default, _boolean2.default, _list2.default, _tuple2.default, _atom2.default, _integer2.default, _float2.default, _binary2.default, _charlist2.default, _regex2.default, _time2.default, _nil2.default];
 	
 	  (0, _forEach2.default)(_registry.registerType, types);
 	}
@@ -2231,6 +2236,32 @@ module.exports =
 	  value: true
 	});
 	
+	var _type = __webpack_require__(56);
+	
+	var _type2 = _interopRequireDefault(_type);
+	
+	var _types = __webpack_require__(35);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var time = (0, _type2.default)({
+	  name: 'boolean',
+	  validate: (0, _types.typeEq)('Boolean')
+	});
+	
+	exports.default = time;
+	module.exports = exports['default'];
+
+/***/ },
+/* 60 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _map = __webpack_require__(1);
 	
 	var _map2 = _interopRequireDefault(_map);
@@ -2254,7 +2285,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2286,7 +2317,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2312,7 +2343,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2338,7 +2369,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2364,7 +2395,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2400,7 +2431,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2426,7 +2457,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2462,7 +2493,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2488,7 +2519,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
