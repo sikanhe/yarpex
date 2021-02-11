@@ -1,7 +1,7 @@
 {
   "name": "yarpex",
   "version": "1.0.6",
-  "main": "index.js",
+  "main": "yarpex.js",
   "repository": "https://github.com/greenboxal/yarpex",
   "author": "Jonathan Lima <greenboxal@gmail.com>",
   "license": "MIT",
