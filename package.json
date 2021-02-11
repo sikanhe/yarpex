@@ -5,7 +5,6 @@
   "repository": "https://github.com/greenboxal/yarpex",
   "author": "Jonathan Lima <greenboxal@gmail.com>",
   "license": "MIT",
-  "main": "yarpex.js",
   "devDependencies": {
     "babel-cli": "6.18.0",
     "babel-core": "6.17.0",
@@ -18,15 +17,16 @@
     "eslint-config-airbnb-base": "8.0.0",
     "eslint-loader": "1.5.0",
     "eslint-plugin-import": "1.16.0",
-    "webpack": "1.13.2",
-    "npm-run-all": "4.0.2",
     "jest": "19.0.2",
-    "json-loader": "0.5.4"
+    "json-loader": "0.5.4",
+    "npm-run-all": "4.0.2",
+    "webpack": "5.21.2",
+    "webpack-cli": "4.5.0"
   },
   "scripts": {
-    "build": "run-p build:dev build:commonjs build:browser",
+    "build": "run-p build:browser",
     "build:commonjs": "webpack --optimize-minimize --optimize-dedupe --output-filename yarpex.min.js",
-    "build:browser": "webpack --optimize-minimize --optimize-dedupe --config webpack.config.browser.js --output-filename yarpex.min.js",
+    "build:browser": "webpack --config webpack.config.browser.js --output-filename yarpex.min.js",
     "build:dev": "run-s build:dev:node build:dev:browser",
     "build:dev:node": "webpack",
     "build:dev:browser": "webpack --config webpack.config.browser.js",
@@ -36,6 +36,7 @@
     "test:unit": "jest --verbose --maxWorkers=1"
   },
   "dependencies": {
+    "buffer": "6.0.3",
     "ramda": "^0.24.1"
   }
 }
